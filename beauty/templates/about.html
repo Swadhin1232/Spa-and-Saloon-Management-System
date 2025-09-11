@@ -1,0 +1,27 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+}
+</style>
+<div style="background-attachment:absolute;
+    background-position:0% 0%;
+  background-size: cover;background-image: url('{% static 'images/back2.jpg' %}');background-repeat: no-repeat;width:100%;height:100%;position:absolute;">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+  <h4 style="font-family:'Monotype Corsiva';color:red;font-weight:bold;font-size:40px;margin-top:1%">ABOUT US</h4><hr>
+  <p style="color:white;font-weight:bold;font-family:cursive;font-size:20px">Our main focus is on quality and hygiene. Our hair saloon is well equipped with advanced technology equipments and provides best quality services. Our staff is well trained and experienced, offering advanced services in Skin, Hair and Body Shaping that will provide you with a luxurious experience that leave you feeling relaxed and stress free. The specialities in the saloon are, apart from regular bleachings and Facials, many types of hairstyles, Bridal and cine make-up and different types of Facials & fashion hair colourings..</p>
+  </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

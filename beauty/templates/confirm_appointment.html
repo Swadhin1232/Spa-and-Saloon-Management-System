@@ -1,0 +1,47 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<center><h2 style="color:red;margin-top:4%;font-family:'Monotype Corsiva';">View Confirm Apponitment</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Customer</th>
+    <th>Service</th>
+    <th>Appointment Date</th>
+      <th>Appointment Time</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in appoint %}
+  <tr>
+    <td>{{i.customer.user.first_name}} {{i.customer.user.last_name}}</td>
+    <td>{{i.service.name}}</td>
+      <td>{{i.date1}}</td>
+      <td>{{i.time1}}</td>
+      <td>{{i.status.status}}</td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div></center>
+
+
+</div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+
+
+{% endblock %}

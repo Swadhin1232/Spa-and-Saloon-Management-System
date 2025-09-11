@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+  <title>Hair Saloon Management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <link rel = stylesheet href = "//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+</head><script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+  </script>
+  <style>
+  * {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 20%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th {
+  text-align: left;
+  padding: 12px;
+  background-color: Darkslateblue;
+  color: white;
+}
+
+
+#myTable td {
+  text-align: left;
+  padding: 12px;
+  background-color: white;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.button {
+  background-color: orange; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 1px 1px;
+  cursor: pointer;
+}
+
+
+.button1 {border-radius: 15px;}
+
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }<style>
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+.nav-link:hover{
+  color: yellow !important;
+  font-weight:bold;
+  background-color : Crimson;
+  border-radius:10px
+}
+
+
+.navbar-brand:hover{
+  font-weight:bold;
+
+
+}
+</style>
+  </style>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container-fluid" style="padding:1%;margin-bottom:0%;background:color:white">
+    <img src="{% static 'images/beauty3.jpg' %}" style="width:90px;height:90px;margin-right:10px;margin-left:8%">
+    <img src = "{% static 'images/hairsaloonlogo.png' %}">
+     <!--<span style="color:green;font-family : 'Monotype Corsiva' ;">Management System</span>-->
+</div></div>
+<nav class="navbar navbar-expand-sm" style="background-color:black">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#" style="color:white;font-family:'Monotype Corsiva';font-weight:bold;margin-left:100px;margin-right:0">
+  Hair Saloon</a>
+
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    {% if request.user.is_staff %}
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'admin_home' %}" style="color:white;margin-left:100px">
+      <i class="fa fa-home" style="margin-right:4px"></i>HOME</a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="color:white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-users" style="margin-right:4px"></i>SERVICES
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'add_service' %}">Add Service</a>
+          <a class="dropdown-item" href="{% url 'view_service' %}">View Services</a>
+        </div>
+      </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="color:white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-users" style="margin-right:4px"></i>USER
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'view_new_user' %}">Request User</a>
+          <a class="dropdown-item" href="{% url 'view_user' %}">All User</a>
+        </div>
+      </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" style="color:white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-users" style="margin-right:4px"></i>APPOINTMENT
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'view_new_appointment' %}">New Appointment</a>
+          <a class="dropdown-item" href="{% url 'confirm_appointment' %}">Confirm Appointment</a>
+          <a class="dropdown-item" href="{% url 'all_appointment' %}">All Appointment</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+      <a class="nav-link" href="{% url 'change_password' %}" style="color:white">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>Change Password</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}" style="color:white">
+      <i class="fa fa-sign-out" style="margin-right:4px"></i>LOGOUT</a>
+    </li>
+
+    <div class="btn-group">
+    <a href=""><button type="button" class="btn btn-primary"  aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-user" style="margin-right:4px"></i>Welcome {{request.user.username}}
+  </button></a>
+  </div>
+
+    {% endif %}
+
+
+    {% if request.user.username %}
+    {% if not request.user.is_staff %}
+   <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile' %}" style="color:white;margin-left:100px">
+      <i class="fa fa-home" style="margin-right:4px"></i>HOME</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'all_service' %}" style="color:white">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>View Service</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'book_appointment' %}" style="color:white">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>Book Appointment</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'view_appointment' %}" style="color:white">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>View My Appointment</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'change_password' %}" style="color:white">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>Change Password</a>
+    </li>
+    {% endif %}
+    {% else %}
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'home' %}" style="color:white;margin-left:100px">
+      <i class="fa fa-home" style="margin-right:4px"></i>HOME</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'about' %}" style="color:white">
+      <i class="fa fa-briefcase" style="margin-right:4px"></i>ABOUT</a>
+    </li>
+
+	<li class="nav-item">
+      <a class="nav-link" href="{% url 'all_service1' %}" style="color:white">
+      <i class="fa fa-briefcase" style="margin-right:4px"></i>SERVICES</a>
+    </li>
+	
+	<li class="nav-item">
+      <a class="nav-link" href="{% url 'gallery' %}" style="color:white">
+      <i class="fa fa-briefcase" style="margin-right:4px"></i>GALLERY</a>
+    </li>
+	
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'contact' %}" style="color:white">
+      <i class="fa fa-address-book-o" style="margin-right:4px"></i>CONTACT</a>
+    </li>
+
+    {% endif %}
+
+{% if request.user.is_authenticated %}
+
+    {% if not request.user.is_staff %}
+     <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}" style="color:white">
+      <i class="fa fa-sign-out" style="margin-right:4px"></i>LOGOUT</a>
+    </li>
+
+      <div class="btn-group">
+  <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-user" style="margin-right:4px"></i>Welcome {{request.user.first_name}}
+  </button>
+</div>
+
+    {% endif %}
+        {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}" style="color:white;text-align:right">
+      <i class="fa fa-sign-in" style="margin-right:4px"></i>USER LOGIN</a>
+    </li>
+      <li class="nav-item">
+            <a class="nav-link" href="{% url 'login_admin' %}" style="color:white;text-align:right">
+            <i class="fa fa-sign-in" style="margin-right:4px"></i>ADMIN LOGIN</a>
+      </li>
+
+    {% endif %}
+
+    </ul>
+
+
+
+</nav>
+
+{% block body %}
+
+{% endblock %}
+
+
+</body>
+</html>

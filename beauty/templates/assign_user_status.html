@@ -1,0 +1,36 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+{% if error %}
+<script>
+    alert('Assigned Status successfully');
+    window.location=('{% url 'view_new_user' %}');
+</script>
+{% endif %}
+
+<div class="container">
+    <h2 style="margin-top:20px" align="center">Assign Status</h2><hr>
+
+<div class="container-fluid" style="width:70%;margin-top:10%">
+<form method="post" action="">
+    {% csrf_token %}
+  <div class="form-group col-md-12">
+    <label for="exampleInputEmail1">Email ID</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="book" value="{{book.user.username}}">
+  </div>
+  <div class="form-group col-md-12">
+      <label for="inputState">Status</label>
+      <select id="inputState" class="form-control" name="status">
+        <option value="">---Select status---</option>
+        <option value="Accept">Accept</option>
+        <option value="Reject">Reject</option>
+      </select>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+
+{% endblock %}

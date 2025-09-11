@@ -1,0 +1,102 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<style>
+div.transbox {
+color:black;
+font-weight:bold;
+  margin: 5%;
+  padding:20px;
+  border-radius:8px;
+  background-color: lightblue;
+  border: 1px solid black;
+  opacity: 0.6;
+}
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+/* Rounded border */
+hr.rounded {
+  border-top: 8px solid lightblue;
+  border-radius: 5px;
+}
+
+.prjdiv:hover{
+transform:translateY(-10px)
+}
+div .container1{
+
+width:100%;
+background-color:lightgrey;
+border-radius:8px;
+}
+h2, h4{
+ padding:10Px;
+}
+
+</style>
+
+<center><h2 style="color:red;margin-top:4%;font-family:'Monotype Corsiva'">View New Requested User</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Full Name</th>
+    <th>ID</th>
+      <th>Contact</th>
+    <th>Email Id</th>
+    <th>Gender</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in user %}
+  <tr>
+
+    <td><img src="{{i.image.url}}" style="width:100px;height:90px"></td>
+    <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+    <td>{{i.id_card_no}}</td>
+      <td>{{i.mobile}}</td>
+      <td>{{i.user.username}}</td>
+      <td>{{i.status.status}}</td>
+    <td><a href="{% url 'assign_user_status' i.id %}"><button class="button button1">assign status</button></a></td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div></center>
+
+
+</div>
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+
+
+{% endblock %}

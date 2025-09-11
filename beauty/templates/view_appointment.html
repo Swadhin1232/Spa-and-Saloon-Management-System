@@ -1,0 +1,68 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<center><h2 style="color:red;margin-top:4%;font-family:'Monotype Corsiva';">View Apponitment</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Sr. no</th>
+    <th>Service</th>
+    <th>Appointment Date</th>
+      <th>Appointment Time</th>
+    <th>Status</th>
+    <th>Confirmed Booking</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in appoint %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{i.service.name}}</td>
+      <td>{{i.date1}}</td>
+      <td>{{i.time1}}</td>
+      <td>{{i.status.status}}</td>
+
+    <td>{% ifequal i.status.status "pending" %}
+        <button class="btn btn-success" onclick="showMessage()" style="width:100%">Pay Now</button>
+        {% else %}
+        {% ifequal i.status.status "Accept" %}
+        {% ifequal i.paid.paid "notpaid" %}
+        <a href="{% url 'payment' i.id %}"><button class="btn btn-success" style="width:100%">
+        Pay Now</button></a>
+        {% else %}
+        <p>Booking Confirmed</p>
+        {% endifequal %}
+        {% endifequal %}
+        {% endifequal %}
+          </td>
+      <td><a href="{% url 'delete_appointment' i.id %}"><button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button></a></td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div></center>
+
+
+</div>
+<script type="text/javascript">
+			function showMessage(){
+				alert("Status is pending,wait some time, whenever Accepting status..");
+			}
+		</script>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+
+{% endblock %}

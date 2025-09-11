@@ -1,0 +1,55 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+<center><h2 style="color:red;margin-top:4%;font-family:'Monotype Corsiva';">View User Detail</h2></center>
+<div  class="container-fluid">
+    <center>
+    <div class="container">
+        <table class="table table-bordered" id="myTable">
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Full Name</th>
+    <th>ID</th>
+      <th>Contact</th>
+    <th>Email Id</th>
+    <th>Gender</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+   <tbody>
+
+    {% for i in user %}
+  <tr>
+
+    <td><img src="{{i.image.url}}" style="width:100px;height:90px"></td>
+    <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+    <td>{{i.id_card_no}}</td>
+      <td>{{i.mobile}}</td>
+      <td>{{i.user.username}}</td>
+      <td>{{i.gender}}</td>
+      <td>{{i.status.status}}</td>
+    <td><a href="{% url 'delete_user' i.user.id %}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger">delete</button></a></td>
+  </tr>
+
+    {% endfor %}
+    </tbody>
+
+</table>
+
+ </div></center>
+
+
+</div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+        </script>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<div class="container-fluid">
+      <center><h2 style="margin-top:3%;font-weight:bold;font-family : 'Monotype Corsiva' ;color:red">View Service</h2></center>
+<hr>
+ <div class="container-fluid">
+   	<h1 class="text-center mt-5 mb-5">
+   	</h1>
+   	<div id="{{i.id}}" class="carousel slide" data-ride="carousel">
+   		<div class="carousel-inner row w-100 mx-auto">
+			{% for j in pro1 %}
+				<div class=" col-md-3 active"><div class="card" style="padding:0;width:80%;margin-bottom:4%">
+					<center><img class="card-img-top img-fluid" align="center" src="{{j.image.url}}" style="margin-top:5%;width:170px;height:170px;float:center" alt="card-img"></center>
+   						<div class="card-body text-center">
+   						<h4 class="card-title text-center">{{j.name}} </h4>
+   						<p class="card-text">Cost : Rs.{{j.cost}}</p>
+
+                            <a href="{% url 'book_select_appointment' j.id %}"><button type="submit" class="btn btn-primary">Book Appointment</button></a>
+   					</div>
+   				</div>
+   			</div>
+			{% endfor %}
+		</div>
+	</div>
+ </div>
+
+      </div>
+{% endblock %}

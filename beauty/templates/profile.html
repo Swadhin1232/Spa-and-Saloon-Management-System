@@ -1,0 +1,57 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:10%" align="center">My Profile</h2><hr>
+
+<div  class="container-fluid" style="width:80%;margin-bottom:5%">
+    <hr><div class="row">
+        <div class="col-md-6">
+            <strong>Full Name:</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.user.first_name}} {{pro.user.last_name}}
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>ID Card Number:</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.id_card_no}}
+        </div>
+    </div><hr>
+
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Image:</strong>
+        </div>
+        <div class="col-md-6">
+            <img src="{{pro.image.url}}" style="width:100px;height:130px"></img>
+        </div></div><hr>
+     
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Email Id :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.user.username}}
+        </div>
+    </div><hr>
+
+     <div class="row">
+        <div class="col-md-6">
+            <strong>Contact :</strong>
+        </div>
+        <div class="col-md-6">
+            {{pro.mobile}}
+        </div>
+     </div><hr>
+
+
+    <a href="{% url 'edit_profile' %}"><button class="btn btn-primary" style="width:100%;margin-bottom:5%">Edit Profile</button></a>
+
+    </div></div>
+</div>
+{% endblock %}

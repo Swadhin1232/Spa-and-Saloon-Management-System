@@ -27,19 +27,22 @@
       <td>{{i.time1}}</td>
       <td>{{i.status.status}}</td>
 
-    <td>{% ifequal i.status.status "pending" %}
-        <button class="btn btn-success" onclick="showMessage()" style="width:100%">Pay Now</button>
-        {% else %}
-        {% ifequal i.status.status "Accept" %}
-        {% ifequal i.paid.paid "notpaid" %}
-        <a href="{% url 'payment' i.id %}"><button class="btn btn-success" style="width:100%">
-        Pay Now</button></a>
-        {% else %}
+    <td>
+{% if i.status.status == "pending" %}
+    <button class="btn btn-success" onclick="showMessage()" style="width:100%">Pay Now</button>
+
+{% elif i.status.status == "Accept" %}
+    
+    {% if i.paid.paid == "notpaid" %}
+        <a href="{% url 'payment' i.id %}">
+            <button class="btn btn-success" style="width:100%">Pay Now</button>
+        </a>
+    {% else %}
         <p>Booking Confirmed</p>
-        {% endifequal %}
-        {% endifequal %}
-        {% endifequal %}
-          </td>
+    {% endif %}
+
+{% endif %}
+</td>
       <td><a href="{% url 'delete_appointment' i.id %}"><button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button></a></td>
   </tr>
 

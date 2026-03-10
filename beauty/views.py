@@ -40,37 +40,44 @@ def Login(request):
     if request.method == "POST":
         u = request.POST['uname']
         p = request.POST['pwd']
+
         user = authenticate(username=u, password=p)
-        cust = Customer.objects.get(user=user)
-        if user:
-            if cust.status.status == "Accept":
-                login(request, user)
-                error = "yes"
-            else:
-                error = "notaccept"
+
+        if user is not None:
+            try:
+                cust = Customer.objects.get(user=user)
+
+                if cust.status.status == "Accept":
+                    login(request, user)
+                    error = "yes"
+                else:
+                    error = "notaccept"
+
+            except Customer.DoesNotExist:
+                error = "not"
+
         else:
-            error="not"
+            error = "not"
+
     d = {'error': error}
-    return render(request,'login.html',d)
+    return render(request, 'login.html', d)
 
 def Admin_Login(request):
     error = ""
     if request.method == "POST":
         u = request.POST['uname']
         p = request.POST['pwd']
+
         user = authenticate(username=u, password=p)
-        try:
-            if user.is_staff:
-                login(request, user)
-                error = "yes"
-            else:
-                error = "not"
-        except:
-            error="not"
+
+        if user is not None and user.is_staff:
+            login(request, user)
+            error = "yes"
+        else:
+            error = "not"
+
     d = {'error': error}
     return render(request,'loginadmin.html',d)
-
-
 def Logout(request):
     logout(request)
     return redirect('home')

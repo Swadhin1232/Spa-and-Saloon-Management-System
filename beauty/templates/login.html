@@ -2,27 +2,30 @@
 {% block body %}
 {% load static %}
 
-{% ifequal error "yes" %}
+{% if error == "yes" %}
 <script>
     alert('logged in successfully');
-    window.location=('{% url 'profile' %}');
+    window.location="{% url 'profile' %}";
 </script>
-{% endifequal %}
-{% ifequal error "not" %}
+{% endif %}
+
+{% if error == "not" %}
 <script>
     alert('Username & Password are not Matching');
 </script>
-{% endifequal %}
-{% ifequal error "notaccept" %}
+{% endif %}
+
+{% if error == "notaccept" %}
 <script>
     alert('Verification is pending, please try after some time');
 </script>
-{% endifequal %}
-{% ifequal error "reject" %}
+{% endif %}
+
+{% if error == "reject" %}
 <script>
     alert('Verification is Rejected,please fill correct Detail');
 </script>
-{% endifequal %}
+{% endif %}
 <style>
 
 div.transbox {

@@ -2,17 +2,18 @@
 {% block body %}
 {% load static %}
 
-{% ifequal error "yes" %}
+{% if error == "yes" %}
 <script>
     alert('logged in successfully');
-    window.location=('{% url 'admin_home' %}');
+    window.location="{% url 'admin_home' %}";
 </script>
-{% endifequal %}
-{% ifequal error "not" %}
+{% endif %}
+
+{% if error == "not" %}
 <script>
     alert('Username & Password are not Matching');
 </script>
-{% endifequal %}
+{% endif %}
 <style>
 
 div.transbox {

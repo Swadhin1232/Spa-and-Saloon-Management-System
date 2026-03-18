@@ -2,6 +2,7 @@
 
 📌 Project Overview
 
+
 The Spa and Salon Management System is a web-based application built using Django that helps manage salon operations such as appointments, customers, staff, and billing efficiently.
 
 ---
